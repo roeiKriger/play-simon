@@ -23,13 +23,13 @@ namespace simon2
         int soundIndex = 0;
         bool flagIsPlayerTurn = false;
         bool flagPlayerdidWrong = false;
-        bool flagTryAgain = false; // each game on method I insert a new color to the colors array, only if the flag is false.
-                                   // but, if the glag is true, it means the player got a new tro of game on, and I will not add any new color.
-                                   // I will make the flag false again, and will ligh up the colors that are still in the array.
+        bool flagTryAgain = false; // each "Game On" method I insert a new color to the colors array, only if the flag is false.
+                                   // But, if the flag is true, it means the player got a new try of "Game On", and I will not add any new color.
+                                   // I will make the flag false again, and will light up the colors that are still in the array.
 
         ImageButton greenImage; ImageButton redImage; ImageButton yellowImage; ImageButton blueImage; Button startImage; // buttons for the images
         readonly int[] memoryArray = new int[maxLevels];  // this array is the computer memory of what was chosen and the player needs to repeat it
-        readonly int[] playerArray = new int[maxLevels];   // this array is the player clicks, and will compare ot to memory array
+        readonly int[] playerArray = new int[maxLevels];   // this array is the player clicks, and will compare it to memory array
         readonly Random rand = new Random(); // the random will be used in order to light up each time a random imageButton
         readonly MediaPlayer[] soundArray = new MediaPlayer[8];  // will contain all my sounds, in order to avoid sound interrupts between the same color twice,
         // each time I am calling the next sound on the array, that way even if a sound (1.5 seconds) didn't end, there wont be a problem.
@@ -399,7 +399,7 @@ namespace simon2
             startImage.Visibility = ViewStates.Visible;
 
         }
-        public void ResetEverythingForNewTry()  // Resting all values to the new game values.
+        public void ResetEverythingForNewTry()  // Reseting all values to the new game values.
         {
             DisableMyColorButtons();
             level = 1;
@@ -419,7 +419,7 @@ namespace simon2
             {
                 if (CheckIfPlayerCorrect())                                // sending to check if there is a a difference between the two arrays
                 {
-                    if (level % 5 == 0)                                    // every 5 levels the game becomes harder (less time to remember
+                    if (level % 5 == 0)                                    // every 5 levels the game becomes harder (less time to remember)
                     {                                                      // lowering the delay of computer speed
                         GetFaster();
                     }
@@ -446,7 +446,7 @@ namespace simon2
         public void YouWon()
         {
             DisableMyColorButtons();
-            DrawAllMyHearts();          // in case a player won, he will get all hearts back, and a new game will be started
+            DrawAllMyHearts();          // in case a player won, he will get all hearts back, and a new game will begin
             currentPlayersClicks = 0;
             level = 1;
             startImage.Visibility = ViewStates.Visible;
@@ -492,7 +492,7 @@ namespace simon2
 
         public void SwitchGameIsDone()
         {
-            RefreshArray(playerArray);               // in case the player has two more lifes, I clear his array (and error)
+            RefreshArray(playerArray);               // in case the player has two more lifes, I clear his array (and errors)
             DisableMyColorButtons();
             currentPlayersClicks = 0;               // clicks are intialized to 0
             flagTryAgain = true;                    // and he will get another try
